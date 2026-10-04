@@ -12,7 +12,7 @@ metadata:
 
 The goal is a model indistinguishable from the real object. Numbers decide; eyes check.
 
-Terms: a **photo** is any reference photo (photo, video frame, manual drawing, render of a scan); a
+Terms: a **photo** is any reference image (a photograph, video frame, manual drawing, render of a scan); a
 **cut-out** is the object's silhouette in a photo; the **model** is what you build.
 
 ## Setup
