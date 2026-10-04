@@ -1,6 +1,6 @@
 [project]
 name = "building-3d-replicas"
-version = "0.1.0"
+version = "0.2.1"
 description = "Build exact 3D replicas of real objects from photos: code-CAD, silhouette fitting through solved cameras, headless Blender."
 license = "MIT"
 requires-python = ">=3.12,<3.13"

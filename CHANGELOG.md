@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1 (2026-10-04)
+
+- Release tooling and CI; the version now agrees in every manifest
+
 ## 0.2.0 (2026-10-04)
 
 - Installs natively: Claude Code and Codex plugins with marketplaces, `npx skills add`, or by hand. The skill lives in `skills/building-3d-replicas/`; scripts run through `uv run`.
