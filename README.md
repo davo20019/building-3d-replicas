@@ -98,6 +98,19 @@ evidence you may share: your own photos, museum open-access collections, Wikimed
 file's licence in `refs/SOURCES.md`). Leave out logos and wordmarks, and check before publishing a replica
 of a product whose shape is itself a protected design.
 
+## Releasing
+
+Claude Code and Codex keep users on the version in the plugin manifests, so every release needs a new
+version. Commit your changes, then:
+
+```sh
+python3 tools/release.py patch "What changed, in one line"    # or minor, major, or an exact X.Y.Z
+```
+
+It writes the version into both plugin manifests, SKILL.md and pyproject.toml, adds the line to
+CHANGELOG.md, runs the checks, commits, tags `vX.Y.Z` and pushes. `tests/test_versions.py` and the GitHub
+Actions check fail if the versions ever disagree.
+
 ## Tests
 
 ```sh

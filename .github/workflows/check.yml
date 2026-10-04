@@ -1,0 +1,22 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Tests (fast; the slow ones need Blender)
+        run: uv run --project skills/building-3d-replicas pytest -q tests -m "not slow"
+      - name: Agent Skills spec
+        run: uvx --from "git+https://github.com/agentskills/agentskills#subdirectory=skills-ref" skills-ref validate skills/building-3d-replicas
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Claude Code plugin and marketplace
+        run: npx -y @anthropic-ai/claude-code plugin validate .
