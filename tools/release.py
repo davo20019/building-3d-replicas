@@ -93,7 +93,7 @@ def main():
     if push:
         run(['git', 'push', '-q', 'origin', 'HEAD', f'v{new}'])
         print(f'release: {new} pushed. Claude Code users get it with `claude plugin update '
-              f'building-3d-replicas@building-3d-replicas`; Codex users with `codex plugin marketplace upgrade`.')
+              f'building-3d-replicas@davo20019`; Codex users with `codex plugin marketplace upgrade`.')
     else:
         print(f'release: {new} committed and tagged locally; push with: git push origin HEAD v{new}')
 

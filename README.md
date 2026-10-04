@@ -28,8 +28,8 @@ Everything the agent uses is in `skills/building-3d-replicas/` (`<skill>` below)
 | `assets/model-template/` | An empty model folder to copy. |
 | `agents/openai.yaml` | Display metadata for Codex and ChatGPT. |
 
-At the repo root: `.claude-plugin/` and `.codex-plugin/` (plugin manifests), `.agents/plugins/` (Codex
-marketplace), `evals/` (scenarios for checking an agent's use of the skill) and `tests/`.
+At the repo root: `.claude-plugin/` and `.codex-plugin/` (plugin manifests; the marketplace that lists them
+is [davo20019/plugins](https://github.com/davo20019/plugins)), `evals/` (scenarios for checking an agent's use of the skill) and `tests/`.
 
 ## Install
 
@@ -37,8 +37,8 @@ The skill is `skills/building-3d-replicas/`. Pick the way your agent installs th
 
 | Agent | Install |
 |---|---|
-| Claude Code (plugin) | `/plugin marketplace add davo20019/building-3d-replicas`, then `/plugin install building-3d-replicas@building-3d-replicas` |
-| Codex (plugin) | `codex plugin marketplace add davo20019/building-3d-replicas`, then `codex plugin add building-3d-replicas@building-3d-replicas` |
+| Claude Code (plugin) | `/plugin marketplace add davo20019/plugins`, then `/plugin install building-3d-replicas@davo20019` |
+| Codex (plugin) | `codex plugin marketplace add davo20019/plugins`, then `codex plugin add building-3d-replicas@davo20019` |
 | Codex (skill only) | ask Codex: `$skill-installer install skills/building-3d-replicas from davo20019/building-3d-replicas` |
 | Any agent that reads Agent Skills (Claude Code, Codex, Cursor, Gemini CLI and others) | `npx skills add davo20019/building-3d-replicas` |
 | By hand | copy `skills/building-3d-replicas/` into `~/.claude/skills/` (Claude Code) or `~/.agents/skills/` (Codex) |
