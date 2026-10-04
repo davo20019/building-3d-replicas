@@ -1,0 +1,12 @@
+{
+  "skills": ["build-3d-model"],
+  "query": "Add the dashboard and seats to our car model. Place them from these walkaround video frames.",
+  "files": ["<video frames of a car interior>", "<the car's owner's manual>"],
+  "expected_behavior": [
+    "Does not place interior parts by eye from the frames",
+    "Looks in the owner's manual first for published interior dimensions and CAD-rendered illustrations",
+    "Measures with measure.py from 6 or more known reference points, and first checks one feature whose position is already known",
+    "Checks a drawing's scale against a second known size before measuring with it",
+    "Audits the built cabin against the published room dimensions by their definitions (SAE J1100)"
+  ]
+}

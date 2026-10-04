@@ -30,9 +30,18 @@ from pathlib import Path
 import cv2, numpy as np
 from scipy.optimize import minimize_scalar
 
+if len(sys.argv) != 2:
+    sys.exit('usage: measure.py <job.json>')
 job_path = Path(sys.argv[1]).resolve()
 job = json.loads(job_path.read_text())
+if 'photo' not in job:
+    sys.exit(f'measure.py: {job_path.name} needs "photo" (path relative to the job file)')
 img = cv2.imread(str(job_path.parent / job['photo']))
+if img is None:
+    sys.exit(f'measure.py: cannot read {job["photo"]} (relative to {job_path.parent})')
+for n, q in job.get('queries', {}).items():
+    if 'px' not in q or 'plane' not in q:
+        sys.exit(f'measure.py: query {n!r} needs "px" and "plane" ({{"x"|"y"|"z": value}} or {{"point", "normal"}})')
 H, W = img.shape[:2]
 fitcam = json.loads((job_path.parent / job['camera']).read_text()) if 'camera' in job else None
 names = list(job.get('refs', {}))

@@ -1,6 +1,6 @@
 """Rigid parts of <object>, in millimetres, exported as STL to parts/.
 
-Frame: up +y, front +z, origin at <where> (docs/frames.md). Sizes come from spec.md; uncertain ones are in P,
+Frame: up +y, front +z, origin at <where> (references/frames.md in the skill). Sizes come from spec.md; uncertain ones are in P,
 fitted by fit_silhouette.py into params.json.
 """
 import json

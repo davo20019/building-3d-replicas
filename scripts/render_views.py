@@ -7,7 +7,7 @@ fit_silhouette.py, also photo_<name>.png: the model seen through that photo's so
 
 The model frame is millimetres with the front on +z and up on +y. review.json's "glbFrame" says how the
 GLB stores it: "y-up" (default; glTF +y up, front +z, for anything standing on the ground) or "front+y"
-(up is glTF -z, for hand-held objects with a face you look down at). See docs/frames.md. Either way the
+(up is glTF -z, for hand-held objects with a face you look down at). See references/frames.md. Either way the
 import is turned into the model frame. Camera distances scale with frontFrameMm, so a 6 m truck and a
 6 cm altimeter get the same framing.
 """
@@ -18,6 +18,8 @@ args = sys.argv[sys.argv.index('--') + 1:]
 glb, outdir, review_json = args[:3]
 cams = args[3:]
 cfg = json.load(open(review_json))
+if 'frontFrameMm' not in cfg:
+    sys.exit('render_views.py: review.json needs frontFrameMm, the width of the front render in mm (a little over the object)')
 frame = cfg['frontFrameMm'] / 1000
 k = cfg['frontFrameMm'] / 75                                    # the views were tuned on a 75 mm frame
 

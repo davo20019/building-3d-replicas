@@ -76,7 +76,11 @@ def look_matrix(eye, look, up=(0, 1, 0)):
     m.translation = eye
     return m
 
+if not cfg.get('cameras'):
+    sys.exit('render_cams.py: cams.json needs a "cameras" block: {name: {"eye", "look"} or {"measure": "<job>.camera.json"}}')
 for name, c in cfg['cameras'].items():
+    if 'measure' not in c and not ('eye' in c and 'look' in c):
+        sys.exit(f'render_cams.py: camera {name!r} needs "eye" and "look" (mm, model frame) or "measure"')
     hidden = []
     only = c.get('only')
     for o in sc.objects:

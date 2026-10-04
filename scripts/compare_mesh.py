@@ -114,8 +114,13 @@ def icp(A, B, iters=40):
         R, t = dR @ R, dR @ (t - mx) + my
     return R, t
 
+if len(sys.argv) != 2:
+    sys.exit('usage: compare_mesh.py <job.json>')
 job_path = Path(sys.argv[1]).resolve()
 job = json.loads(job_path.read_text())
+for k in ('model', 'reference'):
+    if k not in job:
+        sys.exit(f'compare_mesh.py: {job_path.name} needs "{k}" (see the docstring)')
 base = job_path.parent
 rng = np.random.default_rng(0)
 n = job.get('samples', 200000)

@@ -59,10 +59,39 @@ from pathlib import Path
 import cv2, numpy as np
 from scipy.optimize import minimize
 
+def fail(msg):
+    sys.exit(f'fit_silhouette.py: {msg}')
+
+if len(sys.argv) != 2:
+    sys.exit('usage: fit_silhouette.py <model folder>')
 model = Path(sys.argv[1]).resolve()
-CFG = json.loads((model / 'review.json').read_text())['fit']
+if not (model / 'review.json').exists():
+    fail(f'no review.json in {model}')
+CFG = json.loads((model / 'review.json').read_text()).get('fit')
+if not CFG:
+    fail('review.json has no "fit" block (see the docstring)')
+for k in ('solid', 'params'):
+    if k not in CFG:
+        fail(f'the fit block needs "{k}"' + (' ({} to solve only cut-outs and cameras first)' if k == 'params' else ''))
 sys.path.insert(0, str(model))
 cad = importlib.import_module('cad')
+for k in ('solid', 'landmarks', 'viewDark'):
+    if k in CFG and not hasattr(cad, CFG[k]):
+        fail(f'cad.py has no {CFG[k]!r} (named by the fit block\'s "{k}")')
+for k, b in CFG['params'].items():
+    if k not in cad.P:
+        fail(f'parameter {k!r} is not in cad.P (cad.P has {", ".join(cad.P)})')
+    if not (isinstance(b, list) and len(b) == 2 and b[0] < b[1]):
+        fail(f'parameter {k!r} needs bounds [min, max] with min < max, not {b}')
+NEEDS = {'hsv': 'hsv', 'grabcut': 'rect', 'file': 'path'}
+for c in CFG.get('photos', [CFG]):
+    if 'photo' not in c or not (model / c['photo']).exists():
+        fail(f'photo {c.get("photo")!r} not found (relative to {model})')
+    m = c.get('mask', {'method': 'hsv', 'hsv': c.get('hsv')})
+    if m.get('method') not in NEEDS:
+        fail(f'{c["photo"]}: mask method must be one of {", ".join(NEEDS)}')
+    if not m.get(NEEDS[m['method']]):
+        fail(f'{c["photo"]}: a {m["method"]} mask needs "{NEEDS[m["method"]]}"')
 build = getattr(cad, CFG['solid'])
 KEYS, BOUNDS = list(CFG['params']), CFG['params']
 LEGACY = 'photos' not in CFG

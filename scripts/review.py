@@ -14,8 +14,21 @@ import json, subprocess, sys
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
+if len(sys.argv) != 2:
+    sys.exit('usage: review.py <model folder>')
 model = Path(sys.argv[1]).resolve()
+if not (model / 'review.json').exists():
+    sys.exit(f'review.py: no review.json in {model} (copy assets/model-template/review.json and fill it in)')
 cfg = json.loads((model / 'review.json').read_text())
+missing = [k for k in ('glb', 'frontFrameMm', 'expectMm', 'toleranceMm', 'budget') if k not in cfg]
+missing += [f'budget.{k}' for k in ('triangles', 'glbKB', 'texturePx') if k not in cfg.get('budget', {})]
+if 'ref' in cfg:
+    missing += [k for k in ('refCentrePx', 'refPxPerMm') if k not in cfg]
+if missing:
+    sys.exit(f'review.py: review.json is missing {", ".join(missing)} (see assets/model-template/review.json; '
+             'frontFrameMm is the width of the front and side renders, a little over the object)')
+if not (model / cfg['glb']).exists():
+    sys.exit(f'review.py: {cfg["glb"]} not found: run build.sh first')
 rounds = sorted((model / 'review').glob('round-*'), key=lambda p: int(p.name.split('-')[1]))
 out = model / 'review' / f'round-{int(rounds[-1].name.split("-")[1]) + 1 if rounds else 1}'
 out.mkdir(parents=True)

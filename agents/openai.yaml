@@ -1,0 +1,7 @@
+# OpenAI Codex / ChatGPT skill metadata (optional; other agents ignore this file).
+interface:
+  display_name: "Build 3D replica"
+  short_description: "Exact 3D models of real objects from photos: code-CAD, fitted cameras, Blender, GLB"
+  default_prompt: "Build an exact 3D replica of this object from its photos and published dimensions."
+policy:
+  allow_implicit_invocation: true

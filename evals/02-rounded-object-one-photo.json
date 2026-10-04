@@ -1,0 +1,12 @@
+{
+  "skills": ["build-3d-model"],
+  "query": "Make a replica of this anodised aluminium wrist altimeter for our VR app. This straight-on product photo is all I have; the case is 63.5 x 63.5 x 28 mm.",
+  "files": ["<a straight-on product photo of a hand-held instrument with rounded corners>"],
+  "expected_behavior": [
+    "Says that a single straight-on photo only shows the widest outline, and searches for angled views (shops, video) before building",
+    "Shows whether the photo can measure each fitted parameter (scores the outline over a range of corner rounding) instead of trusting the fitted value",
+    "Builds a rounded case as a loft through sections rather than a box with chamfers and small fillets",
+    "Marks the sizes no photo constrains as guesses in spec.md",
+    "Uses metallic materials only if the target scene has environment lighting, otherwise a coated dielectric"
+  ]
+}

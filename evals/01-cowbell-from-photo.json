@@ -1,0 +1,13 @@
+{
+  "skills": ["build-3d-model"],
+  "query": "Build an exact 3D model of the cowbell in the National Museum of American History, object 2018.0174.01, as a GLB. Here is the museum's photo and its record.",
+  "files": ["examples/cowbell/refs/nmah-2018_0174_01.jpg"],
+  "expected_behavior": [
+    "Copies assets/model-template and writes spec.md with the published size (266.7 x 88.9 x 63.5 mm) and its source",
+    "Records the photo's source and CC0 licence in refs/SOURCES.md",
+    "Looks for more views (the museum's 3D scan or other photos) before deciding the structure, and lists what the one photo can't show",
+    "Runs fit_silhouette.py with params {} first and inspects target.png and overlay.png before fitting any shape",
+    "Keeps the published height and width fixed instead of fitting them",
+    "If it uses the museum's scan, uses it only to grade the model (compare_mesh.py), never to build it"
+  ]
+}

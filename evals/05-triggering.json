@@ -1,0 +1,10 @@
+{
+  "skills": ["build-3d-model"],
+  "trigger_checks": [
+    {"query": "I need a millimetre-accurate GLB of my grandfather's pocket watch from these photos", "should_trigger": true},
+    {"query": "Model this museum's Viking sword exactly from its catalogue photos; no scan exists", "should_trigger": true},
+    {"query": "Make a cute low-poly cartoon tree for my game", "should_trigger": false},
+    {"query": "Clean up and decimate this photogrammetry scan", "should_trigger": false},
+    {"query": "Turn this single image into a 3D model with an AI generator", "should_trigger": false}
+  ]
+}

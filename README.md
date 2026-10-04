@@ -1,6 +1,7 @@
 # build-3d-model
 
-A [Claude Code](https://code.claude.com) skill, and the scripts behind it, for building **exact 3D
+An [Agent Skill](https://agentskills.io) (works in Claude Code, Codex and other agents that read
+`SKILL.md`), and the scripts behind it, for building **exact 3D
 replicas of real objects from photos**: parametric code-CAD (build123d), silhouette fitting through each
 photo's solved camera, measurement from known reference points, and headless Blender for assembly,
 materials and review renders.
@@ -14,15 +15,17 @@ are real, not perspective.
 
 | | |
 |---|---|
-| `SKILL.md` | The process and the rules learned building real objects. Claude Code loads it as a skill. |
+| `SKILL.md` | The workflow and the rules that always apply; loaded when the skill is used. |
+| `references/` | Lessons per stage (evidence, structure and building, fitting, measuring, review), frames, WebXR notes; read when a step needs them. |
 | `scripts/fit_silhouette.py` | Fits shape parameters and every photo's camera together, by silhouette overlap, outline distance, measured landmarks and dark-part placement. |
 | `scripts/measure.py` | Measures points in mm in one photo from 6+ points of known position (interiors, details the outline can't see). |
 | `scripts/review.py`, `render_views.py` | A review round: the model rendered through each solved photo camera, beside the photo, with sizes and budget checks. |
 | `scripts/render_cams.py` | Renders the model through any solved or eye/look camera, beside its picture. |
 | `scripts/compare_mesh.py` | Grades a model against a reference mesh (a museum scan, a maker's CAD) in mm. |
 | `examples/cowbell/` | A complete worked example on public-domain material, graded against the museum's scan. |
-| `templates/model/` | An empty model folder to copy. |
-| `docs/` | Frames and GLB conventions; notes for WebXR and real-time engines. |
+| `assets/model-template/` | An empty model folder to copy. |
+| `evals/` | Scenarios for checking an agent's use of the skill. |
+| `agents/openai.yaml` | Display metadata for Codex and ChatGPT. |
 
 ## Install
 
@@ -30,16 +33,22 @@ Requirements: macOS or Linux, [uv](https://docs.astral.sh/uv/), [Blender](https:
 (tested with 5.2) on PATH as `blender`, Node 18+ (for `npx @gltf-transform/cli`), and ffmpeg if you work
 from video.
 
+Clone it into your agent's skills folder (the folder name must stay `build-3d-model`):
+
+| Agent | Personal | Per project |
+|---|---|---|
+| Claude Code | `~/.claude/skills/build-3d-model` | `.claude/skills/build-3d-model` |
+| Codex | `~/.agents/skills/build-3d-model` | `.agents/skills/build-3d-model` |
+
 ```sh
 git clone https://github.com/<owner>/build-3d-model ~/.claude/skills/build-3d-model
 cd ~/.claude/skills/build-3d-model
 uv sync                      # Python 3.12 and pinned build123d, OpenCV, SciPy, Pillow in .venv
-uv run pytest -m "not slow"  # quick self-check, a few seconds
+uv run pytest -m "not slow"  # quick self-check, under a minute
 ```
 
-Claude Code finds the skill in `~/.claude/skills/` (or put it in a project's `.claude/skills/` to share it
-with that project). Ask for a model of a real object and it follows `SKILL.md`. You can also run every
-script by hand; each one's docstring documents its inputs.
+Ask for a model of a real object and the agent follows `SKILL.md`. You can also run every script by hand;
+each one's docstring documents its inputs.
 
 ## Walkthrough: the cowbell
 
@@ -63,12 +72,23 @@ solved cameras against the true ones, and the replica against the scan.
 ## Your own object
 
 ```sh
-cp -r ~/.claude/skills/build-3d-model/templates/model path/to/your/project/models/<name>
+cp -r ~/.claude/skills/build-3d-model/assets/model-template path/to/your/project/models/<name>
 ```
 
 Then follow `SKILL.md`: evidence from every side, the structure decided by looking at all views, the
 uncertain sizes as parameters in `cad.py`, a fit with `params: {}` first to check the cut-outs and
 cameras, then the shape, then review rounds until the remaining differences are deliberate or unknowable.
+
+## Status: early (0.2)
+
+Proven so far on three objects: a museum cowbell graded against its scan (1.4 mm mean, 4.4 mm at the 95th
+percentile on 266 mm), a wrist altimeter and a full-size pickup truck with its interior. Known limits:
+
+- Camera angles solved from real photos can be 10 to 15 degrees off when the model is simpler than the
+  object (distances stay within a few percent); fixing published sizes keeps the shape right.
+- A full fit takes about 15 minutes; most of it is the CAD rebuild per step.
+- Tested on macOS with Blender 5.2. Linux should work but is untested; Windows isn't supported (shell scripts).
+- The evaluations in `evals/` are written but have not yet been run across models.
 
 ## Reference material and licences
 
