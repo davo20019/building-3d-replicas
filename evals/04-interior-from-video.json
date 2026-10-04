@@ -1,5 +1,5 @@
 {
-  "skills": ["build-3d-model"],
+  "skills": ["building-3d-replicas"],
   "query": "Add the dashboard and seats to our car model. Place them from these walkaround video frames.",
   "files": ["<video frames of a car interior>", "<the car's owner's manual>"],
   "expected_behavior": [

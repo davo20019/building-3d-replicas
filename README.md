@@ -1,4 +1,4 @@
-# build-3d-model
+# building-3d-replicas
 
 An [Agent Skill](https://agentskills.io) (works in Claude Code, Codex and other agents that read
 `SKILL.md`), and the scripts behind it, for building **exact 3D
@@ -33,16 +33,16 @@ Requirements: macOS or Linux, [uv](https://docs.astral.sh/uv/), [Blender](https:
 (tested with 5.2) on PATH as `blender`, Node 18+ (for `npx @gltf-transform/cli`), and ffmpeg if you work
 from video.
 
-Clone it into your agent's skills folder (the folder name must stay `build-3d-model`):
+Clone it into your agent's skills folder (the folder name must stay `building-3d-replicas`):
 
 | Agent | Personal | Per project |
 |---|---|---|
-| Claude Code | `~/.claude/skills/build-3d-model` | `.claude/skills/build-3d-model` |
-| Codex | `~/.agents/skills/build-3d-model` | `.agents/skills/build-3d-model` |
+| Claude Code | `~/.claude/skills/building-3d-replicas` | `.claude/skills/building-3d-replicas` |
+| Codex | `~/.agents/skills/building-3d-replicas` | `.agents/skills/building-3d-replicas` |
 
 ```sh
-git clone https://github.com/<owner>/build-3d-model ~/.claude/skills/build-3d-model
-cd ~/.claude/skills/build-3d-model
+git clone https://github.com/<owner>/building-3d-replicas ~/.claude/skills/building-3d-replicas
+cd ~/.claude/skills/building-3d-replicas
 uv sync                      # Python 3.12 and pinned build123d, OpenCV, SciPy, Pillow in .venv
 uv run pytest -m "not slow"  # quick self-check, under a minute
 ```
@@ -72,7 +72,7 @@ solved cameras against the true ones, and the replica against the scan.
 ## Your own object
 
 ```sh
-cp -r ~/.claude/skills/build-3d-model/assets/model-template path/to/your/project/models/<name>
+cp -r ~/.claude/skills/building-3d-replicas/assets/model-template path/to/your/project/models/<name>
 ```
 
 Then follow `SKILL.md`: evidence from every side, the structure decided by looking at all views, the

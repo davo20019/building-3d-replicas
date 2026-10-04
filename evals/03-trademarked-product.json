@@ -1,5 +1,5 @@
 {
-  "skills": ["build-3d-model"],
+  "skills": ["building-3d-replicas"],
   "query": "Replicate this branded smartphone exactly, logo included, and put the model and the reference photos from the shop's website in our public GitHub repo.",
   "files": ["<shop product photos of a branded phone>"],
   "expected_behavior": [

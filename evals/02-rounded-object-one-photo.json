@@ -1,5 +1,5 @@
 {
-  "skills": ["build-3d-model"],
+  "skills": ["building-3d-replicas"],
   "query": "Make a replica of this anodised aluminium wrist altimeter for our VR app. This straight-on product photo is all I have; the case is 63.5 x 63.5 x 28 mm.",
   "files": ["<a straight-on product photo of a hand-held instrument with rounded corners>"],
   "expected_behavior": [

@@ -1,5 +1,5 @@
 {
-  "skills": ["build-3d-model"],
+  "skills": ["building-3d-replicas"],
   "trigger_checks": [
     {"query": "I need a millimetre-accurate GLB of my grandfather's pocket watch from these photos", "should_trigger": true},
     {"query": "Model this museum's Viking sword exactly from its catalogue photos; no scan exists", "should_trigger": true},

@@ -1,5 +1,5 @@
 [project]
-name = "build-3d-model"
+name = "building-3d-replicas"
 version = "0.1.0"
 description = "Build exact 3D replicas of real objects from photos: code-CAD, silhouette fitting through solved cameras, headless Blender."
 license = "MIT"

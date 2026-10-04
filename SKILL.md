@@ -1,5 +1,5 @@
 ---
-name: build-3d-model
+name: building-3d-replicas
 description: Builds exact 3D replicas of real objects from photos, to the millimetre. Parametric code-CAD (build123d), silhouette fitting of uncertain sizes and of each photo's camera, measurement from known points, headless Blender assembly to GLB, and review through each photo's solved camera. Use when a project needs a 3D model or GLB of a specific real object (a product, tool, instrument, vehicle, museum artifact) that must match the real one and no model exists under a licence it can use, or when checking or correcting an existing replica's details against the real object ("is this the same as the real one?", parts that look wrong or floating). Not for stylised or approximate models, cleaning up an existing scan, or generating 3D from a single image.
 license: MIT
 compatibility: Requires Python 3.12 with uv, Blender 4.2+ and Node 18+ on PATH (ffmpeg for video). Tested on macOS.

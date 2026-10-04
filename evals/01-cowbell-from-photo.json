@@ -1,5 +1,5 @@
 {
-  "skills": ["build-3d-model"],
+  "skills": ["building-3d-replicas"],
   "query": "Build an exact 3D model of the cowbell in the National Museum of American History, object 2018.0174.01, as a GLB. Here is the museum's photo and its record.",
   "files": ["examples/cowbell/refs/nmah-2018_0174_01.jpg"],
   "expected_behavior": [

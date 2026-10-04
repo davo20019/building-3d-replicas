@@ -34,35 +34,6 @@ wheels = [
 ]
 
 [[package]]
-name = "build-3d-model"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "build123d" },
-    { name = "numpy" },
-    { name = "opencv-python-headless" },
-    { name = "pillow" },
-    { name = "scipy" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "pytest" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "build123d", specifier = "==0.13.0" },
-    { name = "numpy", specifier = "==2.5.3" },
-    { name = "opencv-python-headless", specifier = "==5.0.0.93" },
-    { name = "pillow", specifier = "==12.2.0" },
-    { name = "scipy", specifier = "==1.18.1" },
-]
-
-[package.metadata.requires-dev]
-dev = [{ name = "pytest", specifier = "==8.4.2" }]
-
-[[package]]
 name = "build123d"
 version = "0.13.0"
 source = { registry = "https://pypi.org/simple" }
@@ -92,6 +63,35 @@ sdist = { url = "https://files.pythonhosted.org/packages/4b/6c/47b531b579d5238e4
 wheels = [
     { url = "https://files.pythonhosted.org/packages/16/a2/da58cdab8a6978376d66c909b06f4a1c9aafbd23163540741c75a51b675e/build123d-0.13.0-py3-none-any.whl", hash = "sha256:177f114e5f0514054189134346d386c7004048f8e58430b9b84b74a04fbc94fe", size = 387753 },
 ]
+
+[[package]]
+name = "building-3d-replicas"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "build123d" },
+    { name = "numpy" },
+    { name = "opencv-python-headless" },
+    { name = "pillow" },
+    { name = "scipy" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "pytest" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "build123d", specifier = "==0.13.0" },
+    { name = "numpy", specifier = "==2.5.3" },
+    { name = "opencv-python-headless", specifier = "==5.0.0.93" },
+    { name = "pillow", specifier = "==12.2.0" },
+    { name = "scipy", specifier = "==1.18.1" },
+]
+
+[package.metadata.requires-dev]
+dev = [{ name = "pytest", specifier = "==8.4.2" }]
 
 [[package]]
 name = "cadquery-ocp-novtk"
