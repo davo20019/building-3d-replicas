@@ -41,7 +41,7 @@ Clone it into your agent's skills folder (the folder name must stay `building-3d
 | Codex | `~/.agents/skills/building-3d-replicas` | `.agents/skills/building-3d-replicas` |
 
 ```sh
-git clone https://github.com/<owner>/building-3d-replicas ~/.claude/skills/building-3d-replicas
+git clone https://github.com/davo20019/building-3d-replicas ~/.claude/skills/building-3d-replicas
 cd ~/.claude/skills/building-3d-replicas
 uv sync                      # Python 3.12 and pinned build123d, OpenCV, SciPy, Pillow in .venv
 uv run pytest -m "not slow"  # quick self-check, under a minute
