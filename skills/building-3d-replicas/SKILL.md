@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires Python 3.12 with uv, Blender 4.2+ and Node 18+ on PATH (ffmpeg for video). Tested on macOS.
 metadata:
   author: David Loor
-  version: "0.2.1"
+  version: "0.2.2"
 ---
 
 # Build an exact replica of a real object

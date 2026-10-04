@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2 (2026-10-04)
+
+- Install as building-3d-replicas@davo20019 from the davo20019/plugins marketplace
+
 ## 0.2.1 (2026-10-04)
 
 - Release tooling and CI; the version now agrees in every manifest

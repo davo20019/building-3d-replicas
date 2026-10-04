@@ -1,7 +1,7 @@
 {
   "name": "building-3d-replicas",
   "displayName": "Building 3D Replicas",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Exact 3D replicas of real objects from photos: build123d code-CAD, silhouette fitting of shape and cameras, measurement from known points, headless Blender, GLB. Graded against a museum scan.",
   "author": {
     "name": "David Loor",
