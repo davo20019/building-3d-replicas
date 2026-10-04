@@ -1,5 +1,5 @@
 """Review round for a model folder: renders, measures, compares with the reference photos.
-  .venv/bin/python scripts/review.py <model>
+  uv run --project <skill> python <skill>/scripts/review.py <model>
 
 Reads <model>/review.json (glb, ref photo with its centre in px and px per mm, expected sizes, budget) and
 writes <model>/review/round-N/: sheet.png and report.md (sizes against expectations, budget, the fit per

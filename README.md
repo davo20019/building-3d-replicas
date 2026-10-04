@@ -13,6 +13,8 @@ are real, not perspective.
 
 ## What's in it
 
+Everything the agent uses is in `skills/building-3d-replicas/` (`<skill>` below):
+
 | | |
 |---|---|
 | `SKILL.md` | The workflow and the rules that always apply; loaded when the skill is used. |
@@ -20,35 +22,33 @@ are real, not perspective.
 | `scripts/fit_silhouette.py` | Fits shape parameters and every photo's camera together, by silhouette overlap, outline distance, measured landmarks and dark-part placement. |
 | `scripts/measure.py` | Measures points in mm in one photo from 6+ points of known position (interiors, details the outline can't see). |
 | `scripts/review.py`, `render_views.py` | A review round: the model rendered through each solved photo camera, beside the photo, with sizes and budget checks. |
-| `scripts/render_cams.py` | Renders the model through any solved or eye/look camera, beside its picture. |
+| `scripts/render_cams.py` | Renders the model through any solved or eye/look camera, beside its photo. |
 | `scripts/compare_mesh.py` | Grades a model against a reference mesh (a museum scan, a maker's CAD) in mm. |
 | `examples/cowbell/` | A complete worked example on public-domain material, graded against the museum's scan. |
 | `assets/model-template/` | An empty model folder to copy. |
-| `evals/` | Scenarios for checking an agent's use of the skill. |
 | `agents/openai.yaml` | Display metadata for Codex and ChatGPT. |
+
+At the repo root: `.claude-plugin/` and `.codex-plugin/` (plugin manifests), `.agents/plugins/` (Codex
+marketplace), `evals/` (scenarios for checking an agent's use of the skill) and `tests/`.
 
 ## Install
 
-Requirements: macOS or Linux, [uv](https://docs.astral.sh/uv/), [Blender](https://www.blender.org/) 4.2+
-(tested with 5.2) on PATH as `blender`, Node 18+ (for `npx @gltf-transform/cli`), and ffmpeg if you work
-from video.
+The skill is `skills/building-3d-replicas/`. Pick the way your agent installs things:
 
-Clone it into your agent's skills folder (the folder name must stay `building-3d-replicas`):
+| Agent | Install |
+|---|---|
+| Claude Code (plugin) | `/plugin marketplace add davo20019/building-3d-replicas`, then `/plugin install building-3d-replicas@building-3d-replicas` |
+| Codex (plugin) | `codex plugin marketplace add davo20019/building-3d-replicas`, then `codex plugin add building-3d-replicas@building-3d-replicas` |
+| Codex (skill only) | ask Codex: `$skill-installer install skills/building-3d-replicas from davo20019/building-3d-replicas` |
+| Any agent that reads Agent Skills (Claude Code, Codex, Cursor, Gemini CLI and others) | `npx skills add davo20019/building-3d-replicas` |
+| By hand | copy `skills/building-3d-replicas/` into `~/.claude/skills/` (Claude Code) or `~/.agents/skills/` (Codex) |
 
-| Agent | Personal | Per project |
-|---|---|---|
-| Claude Code | `~/.claude/skills/building-3d-replicas` | `.claude/skills/building-3d-replicas` |
-| Codex | `~/.agents/skills/building-3d-replicas` | `.agents/skills/building-3d-replicas` |
+Then ask for a model of a real object; the agent loads the skill when the request matches its description.
 
-```sh
-git clone https://github.com/davo20019/building-3d-replicas ~/.claude/skills/building-3d-replicas
-cd ~/.claude/skills/building-3d-replicas
-uv sync                      # Python 3.12 and pinned build123d, OpenCV, SciPy, Pillow in .venv
-uv run pytest -m "not slow"  # quick self-check, under a minute
-```
-
-Ask for a model of a real object and the agent follows `SKILL.md`. You can also run every script by hand;
-each one's docstring documents its inputs.
+Requirements on the machine that runs it: [uv](https://docs.astral.sh/uv/) (it creates the pinned Python
+environment on first use), [Blender](https://www.blender.org/) 4.2+ on PATH as `blender` (tested with 5.2),
+Node 18+ for `npx @gltf-transform/cli`, and ffmpeg if you work from video. Not for claude.ai or the Claude API's
+code sandbox: they have no Blender.
 
 ## Walkthrough: the cowbell
 
@@ -57,22 +57,22 @@ CC0 museum photo, its published size, and four renders of the museum's CC0 scan 
 scan's mesh is never used to build: it is the answer key.
 
 ```sh
-cd examples/cowbell
+cd skills/building-3d-replicas/examples/cowbell
 ./fetch_refs.sh                                   # the photo and scan (CC0), and the four scan renders
 S=../..                                           # the skill's folder
-$S/.venv/bin/python $S/scripts/fit_silhouette.py .   # cameras for all five pictures, then the shape (~15 min)
+uv run --project $S python $S/scripts/fit_silhouette.py .   # cameras for all five pictures, then the shape (~15 min)
 ./build.sh                                        # CAD parts -> Blender -> out/cowbell.glb
-$S/.venv/bin/python $S/scripts/review.py .           # review/round-N/sheet.png
-$S/.venv/bin/python $S/scripts/compare_mesh.py check/scan.json   # the grade, in mm
+uv run --project $S python $S/scripts/review.py .         # review/round-N/sheet.png
+uv run --project $S python $S/scripts/compare_mesh.py check/scan.json   # the grade, in mm
 ```
 
-[examples/cowbell/REPORT.md](examples/cowbell/REPORT.md) has the numbers from each step: the cut-outs, the
+[REPORT.md](skills/building-3d-replicas/examples/cowbell/REPORT.md) has the numbers from each step: the cut-outs, the
 solved cameras against the true ones, and the replica against the scan.
 
 ## Your own object
 
 ```sh
-cp -r ~/.claude/skills/building-3d-replicas/assets/model-template path/to/your/project/models/<name>
+cp -r <skill>/assets/model-template path/to/your/project/models/<name>   # then set SKILL= in its build.sh
 ```
 
 Then follow `SKILL.md`: evidence from every side, the structure decided by looking at all views, the
@@ -101,6 +101,6 @@ of a product whose shape is itself a protected design.
 ## Tests
 
 ```sh
-uv run pytest -m "not slow"   # compare_mesh and measure against exact synthetic answers
-uv run pytest                 # also the cowbell end to end: needs Blender and fetch_refs.sh (minutes)
+uv run --project skills/building-3d-replicas pytest tests -m "not slow"   # compare_mesh and measure, exact answers
+uv run --project skills/building-3d-replicas pytest tests                 # also the cowbell end to end: needs Blender and fetch_refs.sh (minutes)
 ```

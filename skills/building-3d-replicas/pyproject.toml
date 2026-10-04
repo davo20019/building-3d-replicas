@@ -20,4 +20,4 @@ dev = ["pytest==8.4.2"]
 package = false
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["../../tests"]

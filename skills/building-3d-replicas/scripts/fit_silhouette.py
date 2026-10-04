@@ -1,5 +1,5 @@
 """Fit a model's uncertain shape parameters to reference photos by silhouette, solving each photo's camera too.
-  .venv/bin/python scripts/fit_silhouette.py <model>
+  uv run --project <skill> python <skill>/scripts/fit_silhouette.py <model>
 
 Reads the "fit" block of <model>/review.json. Two forms:
 

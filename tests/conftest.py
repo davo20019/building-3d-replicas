@@ -3,8 +3,9 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-SCRIPTS = ROOT / 'scripts'
-COWBELL = ROOT / 'examples' / 'cowbell'
+SKILL = ROOT / 'skills' / 'building-3d-replicas'
+SCRIPTS = SKILL / 'scripts'
+COWBELL = SKILL / 'examples' / 'cowbell'
 
 def run(script, *args, cwd=None):
     return subprocess.run([sys.executable, str(SCRIPTS / script), *map(str, args)], capture_output=True, text=True, cwd=cwd)

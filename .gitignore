@@ -2,17 +2,17 @@
 __pycache__/
 .pytest_cache/
 # Built and fetched files: rebuilt by build.sh, fetched by fetch_refs.sh
-examples/*/parts/
-examples/*/out/
-examples/*/refs/scan/*.glb
-examples/*/refs/*.jpg
-examples/*/check/*.result.json
+**/examples/*/parts/
+**/examples/*/out/
+**/examples/*/refs/scan/*.glb
+**/examples/*/refs/*.jpg
+**/examples/*/check/*.result.json
 # Your own models' reference photos stay local unless their licence lets you publish them
 models/
-examples/*/refs/scan/*.png
+**/examples/*/refs/scan/*.png
 # Fit intermediates (rebuilt by every run); camera.json, report.md and overlay.png are kept as evidence
-examples/*/fit/*/target*.png
-examples/*/fit/*/overlay_dark.png
-examples/*/review/*/*.png
-!examples/*/review/*/sheet.png
-examples/*/review/*/measure.json
+**/examples/*/fit/*/target*.png
+**/examples/*/fit/*/overlay_dark.png
+**/examples/*/review/*/*.png
+!**/examples/*/review/*/sheet.png
+**/examples/*/review/*/measure.json

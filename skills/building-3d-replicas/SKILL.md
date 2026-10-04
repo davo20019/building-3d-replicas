@@ -17,11 +17,14 @@ Terms: a **photo** is any reference image (a photograph, video frame, manual dra
 
 ## Setup
 
-Paths are relative to this skill's directory. Once: `uv sync` (makes `.venv` with pinned build123d, OpenCV,
-SciPy and Pillow). Run every script as `.venv/bin/python scripts/<name>.py`; each one's docstring documents its
-inputs. Blender, Node (for `npx @gltf-transform/cli`) and, for video, ffmpeg must be on PATH.
+`<skill>` is this skill's directory (the folder holding this file); paths below are relative to it. Run every
+script as `uv run --project <skill> python <skill>/scripts/<name>.py`: uv creates the pinned environment
+(build123d, OpenCV, SciPy, Pillow) on first use, so there is nothing to install by hand. Each script's
+docstring documents its inputs. Blender, Node (for `npx @gltf-transform/cli`) and, for video, ffmpeg must be
+on PATH; if one is missing, say so and stop rather than working around it.
 
-Start each model by copying `assets/model-template/` into the user's project (`<model>` below). For a worked
+Start each model by copying `assets/model-template/` into the user's project (`<model>` below) and setting
+`SKILL=` at the top of its `build.sh` to `<skill>`. For a worked
 example with every number, see [examples/cowbell/REPORT.md](examples/cowbell/REPORT.md).
 
 ## Model folder

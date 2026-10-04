@@ -1,5 +1,5 @@
 """Measure points in a photo in millimetres, from reference points whose positions are known.
-  .venv/bin/python scripts/measure.py <job.json>
+  uv run --project <skill> python <skill>/scripts/measure.py <job.json>
 
 For what a silhouette can't constrain (an interior, a handle, a seam, a light's height): pick a photo that
 shows the feature, mark at least six points whose 3D positions are known (published sizes, parts already
