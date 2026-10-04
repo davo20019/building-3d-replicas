@@ -15,7 +15,11 @@ a model; it is what made them work once loaded.
 - Metallic surfaces need environment lighting (image-based lighting). In Babylon.js, a `ReflectionProbe`
   that renders the sky (and the ground) once, set as `scene.environmentTexture`, is enough. Without one,
   metal renders black: use metallic 0 with a clear coat instead.
-- Light a cabin from inside too; a sky light through glass leaves it flat and even.
+- A cabin needs baked light (see SKILL.md). In Babylon.js the glTF occlusion map becomes `ambientTexture`;
+  set `material.ambientTextureImpactOnAnalyticalLights = 1` so it dims the sun and sky light too, not only
+  the environment.
+- A showroom for bare metal should be evenly lit (a bright, plain hall): steel then shows its own tone
+  instead of one hot reflection.
 
 ## Loading
 
@@ -26,6 +30,12 @@ a model; it is what made them work once loaded.
   the rate). Keep the node's rest rotation and multiply onto it.
 - A pressable part needs a pick target bigger than the real control (a 3 cm button wants a ~12 cm target
   for a controller ray) and a hover glow.
+
+## Seating the viewer
+
+Put the head at the seat's eye point (SAE J1100: the eye ellipse above the seating point), not at the eye
+minus the room height the headset reports: before the headset has reported a height, that put people in the
+floor. After someone sits down or stands up in the room, move the view back to the eye once it settles.
 
 ## Mounting on a controller
 
