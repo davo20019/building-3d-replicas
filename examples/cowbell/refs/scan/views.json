@@ -1,0 +1,56 @@
+{
+  "_": "Truth cameras for the scan renders, in fit_silhouette.py's camera model. tests/test_cowbell.py compares the fit's solved cameras with these.",
+  "offsetMm": [
+    0,
+    127.7,
+    0
+  ],
+  "centreMm": [
+    0,
+    127.7,
+    0
+  ],
+  "size": [
+    1200,
+    1600
+  ],
+  "cameras": {
+    "scan_front": {
+      "pitchYawRollDeg": [
+        8,
+        0,
+        0
+      ],
+      "distanceMm": 700,
+      "pxPerMm": 4.6
+    },
+    "scan_side": {
+      "pitchYawRollDeg": [
+        8,
+        -90,
+        0
+      ],
+      "distanceMm": 700,
+      "pxPerMm": 4.6
+    },
+    "scan_quarter": {
+      "pitchYawRollDeg": [
+        20,
+        -40,
+        0
+      ],
+      "distanceMm": 600,
+      "pxPerMm": 4.4
+    },
+    "scan_low": {
+      "pitchYawRollDeg": [
+        -15,
+        130,
+        3
+      ],
+      "distanceMm": 800,
+      "pxPerMm": 4.4
+    }
+  },
+  "_offset": "the scan lifted so its rim (flat, 5.0 mm above the scan's lowest point, the clapper ball) is at y = 0"
+}

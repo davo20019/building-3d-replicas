@@ -1,0 +1,293 @@
+{
+  "glb": "out/cowbell.glb",
+  "glbFrame": "y-up",
+  "frontFrameMm": 300,
+  "_frontFrameMm": "width of the orthographic front and side renders, a little over the object",
+  "expectMm": {
+    "_all": [
+      88.9,
+      266.7,
+      null
+    ]
+  },
+  "expectAxes": true,
+  "_expectMm": "published overall width and height (NMAH); the published depth, 63.5, matches neither the photos nor the scan, so it is not checked",
+  "toleranceMm": 3.0,
+  "budget": {
+    "triangles": 10000,
+    "glbKB": 500,
+    "texturePx": 1024
+  },
+  "exposure": 0,
+  "fit": {
+    "solid": "parts_solid",
+    "landmarks": "landmarks",
+    "viewDark": "VIEW_DARK",
+    "darkWeightMm": 4,
+    "centreMm": [
+      0,
+      127.7,
+      0
+    ],
+    "tessellation": [
+      0.3,
+      0.5
+    ],
+    "params": {
+      "mouth_d": [
+        45,
+        70
+      ],
+      "crown_w": [
+        55,
+        85
+      ],
+      "crown_d": [
+        20,
+        50
+      ],
+      "body_h": [
+        95,
+        130
+      ],
+      "corner_r": [
+        2,
+        15
+      ],
+      "shoulder_r": [
+        1,
+        12
+      ],
+      "handle_d": [
+        14,
+        24
+      ],
+      "paint_y": [
+        130,
+        180
+      ],
+      "loop_out": [
+        18,
+        32
+      ],
+      "loop_top": [
+        120,
+        150
+      ],
+      "loop_rise": [
+        0,
+        15
+      ],
+      "loop_w": [
+        4,
+        20
+      ]
+    },
+    "photos": [
+      {
+        "name": "museum",
+        "photo": "refs/nmah-2018_0174_01.jpg",
+        "view": [
+          0,
+          0,
+          0
+        ],
+        "search": {
+          "pitch": [
+            -15,
+            15,
+            5
+          ],
+          "yaw": [
+            -10,
+            10,
+            5
+          ]
+        },
+        "mask": {
+          "method": "grabcut",
+          "rect": [
+            800,
+            90,
+            2200,
+            3600
+          ],
+          "exclude": [
+            [
+              [
+                2101,
+                2201
+              ],
+              [
+                2334,
+                2201
+              ],
+              [
+                2334,
+                3701
+              ],
+              [
+                2101,
+                3701
+              ]
+            ],
+            [
+              [
+                900,
+                3575
+              ],
+              [
+                2334,
+                3575
+              ],
+              [
+                2334,
+                3735
+              ],
+              [
+                900,
+                3735
+              ]
+            ],
+            [
+              [
+                1607,
+                200
+              ],
+              [
+                1717,
+                200
+              ],
+              [
+                1717,
+                1734
+              ],
+              [
+                1607,
+                1734
+              ]
+            ]
+          ]
+        },
+        "landmarks": {},
+        "parts": "all",
+        "dark": {
+          "satMax": 90,
+          "valueMax": 140
+        }
+      },
+      {
+        "name": "scan_front",
+        "photo": "refs/scan/scan_front.png",
+        "view": [
+          0,
+          0,
+          0
+        ],
+        "mask": {
+          "method": "grabcut",
+          "rect": [
+            20,
+            20,
+            1180,
+            1580
+          ]
+        },
+        "parts": "all",
+        "dark": {
+          "satMax": 90,
+          "valueMax": 140
+        },
+        "landmarks": {
+          "loop_l_top": [
+            492,
+            815
+          ],
+          "loop_r_top": [
+            715,
+            827
+          ]
+        },
+        "focalPx": 3220.0
+      },
+      {
+        "name": "scan_side",
+        "photo": "refs/scan/scan_side.png",
+        "view": [
+          0,
+          -90,
+          0
+        ],
+        "mask": {
+          "method": "grabcut",
+          "rect": [
+            20,
+            20,
+            1180,
+            1580
+          ]
+        },
+        "parts": "all",
+        "dark": {
+          "satMax": 90,
+          "valueMax": 140
+        },
+        "landmarks": {},
+        "focalPx": 3220.0
+      },
+      {
+        "name": "scan_quarter",
+        "photo": "refs/scan/scan_quarter.png",
+        "view": [
+          15,
+          -45,
+          0
+        ],
+        "mask": {
+          "method": "grabcut",
+          "rect": [
+            20,
+            20,
+            1180,
+            1580
+          ]
+        },
+        "parts": "all",
+        "dark": {
+          "satMax": 90,
+          "valueMax": 140
+        },
+        "landmarks": {},
+        "focalPx": 2640.0
+      },
+      {
+        "name": "scan_low",
+        "photo": "refs/scan/scan_low.png",
+        "view": [
+          -10,
+          -45,
+          0
+        ],
+        "mask": {
+          "method": "grabcut",
+          "rect": [
+            20,
+            20,
+            1180,
+            1580
+          ]
+        },
+        "parts": "below",
+        "dark": {
+          "satMax": 90,
+          "valueMax": 140
+        },
+        "landmarks": {},
+        "focalPx": 3520.0
+      }
+    ],
+    "rounds": 3,
+    "maxShapeEvals": 250,
+    "landmarkWeight": 1.0
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "_": "The replica against the museum's CC0 scan: the answer key the fit never saw.",
+  "model": [
+    "../parts/*.stl"
+  ],
+  "reference": "../refs/scan/nmah-2018_0174_01-cowbell-150k.glb",
+  "referenceScale": 1000,
+  "referenceOffsetMm": [
+    0,
+    127.7,
+    0
+  ],
+  "icp": true
+}

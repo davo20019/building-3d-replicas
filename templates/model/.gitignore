@@ -1,0 +1,6 @@
+refs/*
+!refs/SOURCES.md
+parts/
+out/
+.venv/
+__pycache__/

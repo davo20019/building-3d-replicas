@@ -1,0 +1,56 @@
+{
+  "glb": "out/model.glb",
+  "glbFrame": "y-up",
+  "frontFrameMm": 150,
+  "_frontFrameMm": "width of the orthographic front and side renders, a little over the object",
+  "expectMm": {
+    "body": [
+      100.0,
+      50.0,
+      30.0
+    ]
+  },
+  "toleranceMm": 1.0,
+  "budget": {
+    "triangles": 10000,
+    "glbKB": 500,
+    "texturePx": 1024
+  },
+  "exposure": 0,
+  "fit": {
+    "solid": "parts_solid",
+    "landmarks": "landmarks",
+    "viewDark": "VIEW_DARK",
+    "params": {},
+    "_params": "empty first: cut-outs and cameras only. Then {name: [min, max]} for each parameter the photos can see.",
+    "photos": [
+      {
+        "name": "front",
+        "photo": "refs/front.jpg",
+        "view": [
+          0,
+          0,
+          0
+        ],
+        "mask": {
+          "method": "grabcut",
+          "rect": [
+            0,
+            0,
+            1000,
+            1000
+          ],
+          "refine": true,
+          "exclude": []
+        },
+        "landmarks": {
+          "top_front_left": [
+            0,
+            0
+          ]
+        },
+        "parts": "all"
+      }
+    ]
+  }
+}

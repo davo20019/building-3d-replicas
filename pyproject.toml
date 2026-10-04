@@ -1,0 +1,23 @@
+[project]
+name = "build-3d-model"
+version = "0.1.0"
+description = "Build exact 3D replicas of real objects from photos: code-CAD, silhouette fitting through solved cameras, headless Blender."
+license = "MIT"
+requires-python = ">=3.12,<3.13"
+# Pinned: build123d and its OpenCascade bindings change behaviour between releases.
+dependencies = [
+  "build123d==0.13.0",
+  "numpy==2.5.3",
+  "opencv-python-headless==5.0.0.93",
+  "scipy==1.18.1",
+  "pillow==12.2.0",
+]
+
+[dependency-groups]
+dev = ["pytest==8.4.2"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
