@@ -29,8 +29,12 @@ region cut out of one big solid.
 - **Check the motion every build.** Turn each moving part through its full travel and test every part it carries
   against every fixed part; fail the build on any crossing. Shut, parts may rest against each other where they are
   fitted; once moving, nothing may pass through anything.
-- **Model what is visible and what decides the motion**, not hidden internals no photo shows (hinge brackets inside
-  a pillar, regulators): those would be guesses, and cost triangles nobody sees.
+- **Model every face a part shows, including once it is taken apart.** If the replica will be disassembled (an
+  exploded view, a workshop where parts come off), each part is a complete closed solid on every side, never a
+  shell with its hidden faces dropped to save triangles; what lies under a part is modelled too, from evidence
+  (service manuals photograph parts removed: the door under its trim, the hinge on its pillar). If it will only be
+  seen assembled, model what shows and what decides the motion. Either way, nothing no source shows: that would be
+  a guess.
 
 Cutting the moving parts out of one solid by region looked equivalent and wasn't: on a vehicle it left half a mirror
 on the body when the door opened, a glass triangle and a window frame buried in the door, a wheel arch flare on the
