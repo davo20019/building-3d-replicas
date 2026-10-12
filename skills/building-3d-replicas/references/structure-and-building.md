@@ -4,17 +4,44 @@ How to turn the views into a parametric model, which method to use per part, and
 material and export lessons. Read for workflow steps 2, 3 and 6.
 
 ## Contents
+- Parts and assemblies
 - Deciding the structure
 - Method per part
 - Building lessons
 - Triangles, materials and export
+
+## Parts and assemblies
+
+Build the object the way it is made: from individual parts, each a solid of its own, put together into the bigger
+assemblies the real object has. A vehicle is a body with doors, lids and glass; a door is a skin, a window, a mirror
+and its trim; a tool is a handle, a head and the pin through them. A part is not whatever happens to fall inside a
+region cut out of one big solid.
+
+- **Every part declares what it is fixed to** (the body, a door, a lid), and the assembly step hangs it there from
+  that declaration: write it out (a `mounts.json`, part to mount), never infer it from file names or positions.
+- **A moving part stands in an opening, with its real gap all round.** Fixed parts stop at the opening; the moving
+  part sits inside it by the gap. Its outer skin may still be the body's own surface within its outline: a car
+  door's outer panel is one panel of the body's shape.
+- **Its hinge or slide is part of its definition**, where the real one is and on its real axis: measured (a service
+  manual's hinge mounts, a door's pose in two photos, solved as a rotation), never placed where it happens to work.
+- **It lies within its swing.** Every part it carries stays inside the volume its motion leaves free (for a hinged
+  door, a cylinder about the hinge stopping short of the body's next face), so it can't drag through the body.
+- **Check the motion every build.** Turn each moving part through its full travel and test every part it carries
+  against every fixed part; fail the build on any crossing. Shut, parts may rest against each other where they are
+  fitted; once moving, nothing may pass through anything.
+- **Model what is visible and what decides the motion**, not hidden internals no photo shows (hinge brackets inside
+  a pillar, regulators): those would be guesses, and cost triangles nobody sees.
+
+Cutting the moving parts out of one solid by region looked equivalent and wasn't: on a vehicle it left half a mirror
+on the body when the door opened, a glass triangle and a window frame buried in the door, a wheel arch flare on the
+door's face, trim inside the sill, all of which the door then swept through. Only the motion check found them.
 
 ## Deciding the structure
 
 - An object of flat faces (a vehicle body, a building, a machined block) is best built as the intersection of half-spaces, one plane per face, each through named corner points. Every face stays flat whatever the parameters, and convex creases come out by construction. Two neighbouring faces that must both survive have to share their crease line.
 - Keep what changes between photos out of the shape: suspension height, steering, open doors, a lowered antenna. These are per-photo pose values in the fit (`rideOffset`), not parameters.
 - If people will look inside (a vehicle, a cockpit, a room), plan the interior and see-through glass from the start: the shell has to be hollow, and the inside of a solid is invisible in real-time engines (back faces are culled).
-- Decide which parts move (doors, lids, wheels, needles, a clapper) now, not after the build: each becomes its own node, cut out of the shell along its seams with a hinge or pivot, and everything mounted on it goes with it. The manual says where the controls are; leave a fixed strip where a control sits on the body.
+- Decide which parts move (doors, lids, wheels, needles, a clapper) now, not after the build: each becomes its own assembly and node, in its opening with its hinge or pivot (see "Parts and assemblies"), and everything mounted on it goes with it. The manual says where the controls are; leave a fixed strip where a control sits on the body.
 - Make a separately coloured part its own part (a black grip on a red handle): the fit's dark channel then places its boundary.
 
 ## Method per part
@@ -32,8 +59,8 @@ material and export lessons. Read for workflow steps 2, 3 and 6.
 - **Build from positive parts, not by cutting windows.** A rim cut from a disc came out as shards; hub, spokes and ring unioned came out clean. Likewise hollow a filleted solid by subtracting a smaller loft: the kernel's shell operation fails on fillets.
 - **No coplanar faces.** Parts that touch must be offset by at least 0.05 to 0.1 mm, or they z-fight. Inset panels (glass, lights) go in a pocket 1 mm under the surface, 0.5 mm smaller all round. A hole behind a pane has to start above the pocket floor, or a thin sheet closes it.
 - **Glass edges need their black frit band**, or the trim behind tinted glass shows through at its corners.
-- **Cut moving parts with regions, not by hand.** A door is the shell intersected with a region (between its seams, below the roof, outboard of the window plane), so the roof never comes away with it. Split every part that crosses the region the same way, skip empty results, and clear `parts/` at the start of each run, or stale STLs come back.
-- **Check moving parts in every state.** With frameless windows down and a door open, a sliver of steel floated over the opening; render every door open and closed, every lid, every wheel turned.
+- **Moving parts are assemblies in openings, not regions cut from the shell** (see "Parts and assemblies"). Clear `parts/` at the start of each run, or stale STLs come back.
+- **Check moving parts in every state, and through their motion.** With frameless windows down and a door open, a sliver of steel floated over the opening; render every door open and closed, every lid, every wheel turned, and run the motion check in the build.
 - **Moving parts get their own node** with the pivot at the origin, and the `.json` says how to drive it. Parts that turn but don't spin (brakes) go in the steer node.
 - **Interaction lives in the app, the model just names it.** Give each pressable part its own named mesh and each moving part its node, and write in the `.json` how to drive them.
 - **Check every face that should look at the viewer.** Screens and dials built facing +z faced away; render from the seat or the hand before calling it done, and map a screen's texture so its right is the viewer's right.

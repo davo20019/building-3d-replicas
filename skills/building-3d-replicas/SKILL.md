@@ -78,6 +78,9 @@ Replica progress:
 
 ## Rules that always apply
 
+- **Build it as it is made: individual parts, assembled into the bigger parts** the real object has, each declaring
+  what it is fixed to; a moving part stands in its opening with its real gap and hinge, and its motion is checked
+  every build. See [references/structure-and-building.md](references/structure-and-building.md).
 - **Trust the numbers over your eye.** A photo read as shot from above was shot from below; the dial's
   position inside the outline proved it.
 - **Check the cut-outs and cameras before fitting any shape.** A bad cut-out makes every number wrong.
