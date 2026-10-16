@@ -35,6 +35,8 @@ Several photos fitted together (shared shape parameters, one camera per photo):
                "exclude": [[[x, y], ...], ...] polygons that are sure background for grabcut: a drop shadow, a
                car parked beside it, a sign in front. A few marked pixels also teach grabcut their colour.
     landmarks  {landmark name: [x, y] px in the photo}: measured inner points (wheel centres, light bar)
+    cameraHeightMm  optional [lo, hi] for this photo alone, overriding the shared one: what the photo itself shows
+               of the camera's height (a flat lit panel seen edge-on puts the camera at its height)
     focalPx    optional focal length in px, when known: from EXIF, focal_mm / sensor_width_mm x image width px.
                Silhouettes alone trade tilt for perspective (a steep view from far looks like a shallow one
                from near); a known focal length removes most of that
@@ -308,9 +310,10 @@ def loss_cam(ph, geo, cam, lms):
     m = (lab > 0).astype(np.uint8)
     iou, edge = score(m, ph.target, 1 / cam[5])
     l = edge + IOU_W * (1 - iou) + DARK_W * (1 - dark_iou(ph, lab)) + LM_W * landmark_error(ph, geo, cam, lms, m)
-    if CAM_H:
+    rng = ph.c.get('cameraHeightMm', CAM_H)                         # a photo's own range overrides the shared one
+    if rng:
         h = camera_position(geo, cam)[1]
-        l += CFG.get('cameraHeightWeight', 0.5) * (max(CAM_H[0] - h, 0) + max(h - CAM_H[1], 0))
+        l += CFG.get('cameraHeightWeight', 0.5) * (max(rng[0] - h, 0) + max(h - rng[1], 0))
     if RIDE:
         lo, hi = RIDE['range']
         l += 10 * (max(lo - ride(cam), 0) + max(ride(cam) - hi, 0))
