@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.3 (2026-10-16)
+
+- Replicas built as assembled parts with moving parts motion-checked; parts taken apart complete on every side; bundle-solving features with the photos' cameras; per-photo camera height in the fit
+
 ## 0.2.2 (2026-10-04)
 
 - Install as building-3d-replicas@davo20019 from the davo20019/plugins marketplace
