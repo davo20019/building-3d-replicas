@@ -60,6 +60,10 @@ published structure (the panel's thickness and warp, cross-grain keys, linings, 
 bars) and mark positions and sizes as estimates. A frame with no measured drawing gets a period stand-in,
 kept quiet so it doesn't pass as a copy, and the card says so.
 
+- **Measure a warp from what the edges rest on, not from the corners.** A cupped panel's most forward edge
+  point touches the frame's straight rebate and its corners stand back. Measured from its corners, the
+  Mona Lisa's top and bottom edges came 3.5 mm through the frame's front and flickered in the headset.
+
 ## Texture budget
 
 Work from what the headset can resolve, not from the scan. A Quest-class headset resolves about 25 px per

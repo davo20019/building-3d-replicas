@@ -33,6 +33,11 @@ corner. Build assembled pieces to meet, not overlap, and check: for every pair o
 planes (axis-aligned bounding boxes are enough for boxes and planes) and report the ones that share a plane,
 overlap, and face the same way. Faces that touch while facing each other hide each other and are fine.
 
+Sub-pixel bright detail flickers too: gilding's fine edges and punched marks, a 12 mm light strip seen from
+3 m. Turn on specular anti-aliasing for shiny materials with fine normal detail (Babylon.js:
+`material.enableSpecularAntiAliasing = true`), and make emissive strips and lamps a few pixels tall from where
+people stand.
+
 ## Loading
 
 - glTF is right-handed; Babylon.js is left-handed. Its loader adds a `__root__` node that mirrors z, so a
