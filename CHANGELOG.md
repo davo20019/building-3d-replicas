@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0 (2026-10-26)
+
+- Living tissue and soft motion: organs from open scan data and published measurements, motion calibrated on volumes that never tears (references/organic.md)
+
 ## 0.2.3 (2026-10-16)
 
 - Replicas built as assembled parts with moving parts motion-checked; parts taken apart complete on every side; bundle-solving features with the photos' cameras; per-photo camera height in the fit
