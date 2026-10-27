@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0 (2026-10-26)
+
+- Paintings and other flat objects (references/flat.md); headset flicker: coplanar faces, warps that come through frames, sub-pixel bright detail
+
 ## 0.3.0 (2026-10-26)
 
 - Living tissue and soft motion: organs from open scan data and published measurements, motion calibrated on volumes that never tears (references/organic.md)

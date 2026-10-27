@@ -79,7 +79,7 @@ Then follow `SKILL.md`: evidence from every side, the structure decided by looki
 uncertain sizes as parameters in `cad.py`, a fit with `params: {}` first to check the cut-outs and
 cameras, then the shape, then review rounds until the remaining differences are deliberate or unknowable.
 
-## Status: early (0.3)
+## Status: early (0.4)
 
 Proven so far on three objects: a museum cowbell graded against its scan (1.4 mm mean, 4.4 mm at the 95th
 percentile on 266 mm), a wrist altimeter and a full-size pickup truck with its interior. Known limits:
