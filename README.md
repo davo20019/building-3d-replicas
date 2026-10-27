@@ -18,7 +18,7 @@ Everything the agent uses is in `skills/building-3d-replicas/` (`<skill>` below)
 | | |
 |---|---|
 | `SKILL.md` | The workflow and the rules that always apply; loaded when the skill is used. |
-| `references/` | Lessons per stage (evidence, structure and building, fitting, measuring, review), frames, WebXR notes; read when a step needs them. |
+| `references/` | Lessons per stage (evidence, structure and building, fitting, measuring, review), living tissue and soft motion from scan data (organic.md), frames, WebXR notes; read when a step needs them. |
 | `scripts/fit_silhouette.py` | Fits shape parameters and every photo's camera together, by silhouette overlap, outline distance, measured landmarks and dark-part placement. |
 | `scripts/measure.py` | Measures points in mm in one photo from 6+ points of known position (interiors, details the outline can't see). |
 | `scripts/review.py`, `render_views.py` | A review round: the model rendered through each solved photo camera, beside the photo, with sizes and budget checks. |

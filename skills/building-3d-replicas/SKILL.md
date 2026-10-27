@@ -1,6 +1,6 @@
 ---
 name: building-3d-replicas
-description: Builds exact 3D replicas of real objects from photos, to the millimetre. Parametric code-CAD (build123d), silhouette fitting of uncertain sizes and of each photo's camera, measurement from known points, headless Blender assembly to GLB, and review through each photo's solved camera. Use when a project needs a 3D model or GLB of a specific real object (a product, tool, instrument, vehicle, museum artifact) that must match the real one and no model exists under a licence it can use, or when checking or correcting an existing replica's details against the real object ("is this the same as the real one?", parts that look wrong or floating). Not for stylised or approximate models, cleaning up an existing scan, or generating 3D from a single image.
+description: Builds exact 3D replicas of real objects from photos, to the millimetre. Parametric code-CAD (build123d), silhouette fitting of uncertain sizes and of each photo's camera, measurement from known points, headless Blender assembly to GLB, and review through each photo's solved camera. Also builds organs and other living, moving tissue from open medical scan data and published measurements. Use when a project needs a 3D model or GLB of a specific real object (a product, tool, instrument, vehicle, museum artifact, an organ) that must match the real one and no model exists under a licence it can use, or when checking or correcting an existing replica's details against the real object ("is this the same as the real one?", parts that look wrong or floating). Not for stylised or approximate models, cleaning up an existing scan, or generating 3D from a single image.
 license: MIT
 compatibility: Requires Python 3.12 with uv, Blender 4.2+ and Node 18+ on PATH (ffmpeg for video). Tested on macOS.
 metadata:
@@ -59,12 +59,14 @@ Replica progress:
 
 1. **Evidence.** Collect every view: manuals and makers' pages for sizes, museum open access, Wikimedia
    Commons, shops, video. Label views by geometry. Write down what no photo shows. See
-   [references/evidence.md](references/evidence.md).
+   [references/evidence.md](references/evidence.md). For anatomy, open scan datasets and the literature are the
+   evidence: [references/organic.md](references/organic.md).
 2. **Structure.** Look at all views and name every feature (facets, scoops, lips, bevels); the fit only tunes
    the shape you give it. Give each uncertain size a parameter in `P`; plan moving parts and interiors now. See
    [references/structure-and-building.md](references/structure-and-building.md).
 3. **Method per part:** code-CAD for rigid parts, drawn textures for printed graphics, swept meshes in Blender
-   for soft parts, a library part only if its licence and provenance check out. Same file as step 2.
+   for soft parts, a library part only if its licence and provenance check out. Same file as step 2. Living
+   tissue, and parts that move by changing shape (valves, cords): [references/organic.md](references/organic.md).
 4. **Fit.** Run `scripts/fit_silhouette.py <model>` with `params: {}` first and look at every `target.png` and
    `overlay.png`; then add the parameters. See [references/fitting.md](references/fitting.md).
 5. **Measure** interiors and details from 6 or more known points with `scripts/measure.py <job.json>`. See
@@ -90,6 +92,9 @@ Replica progress:
 - **Fix what is published; fit only what isn't.** Free published sizes absorb camera errors.
 - **When cues disagree, the structure is wrong.** Find the missing feature; don't average.
 - **Never place a feature by eye.** Measure it, or mark it as a guess in `spec.md`.
-- **Never build from a reference mesh.** It is the answer key.
+- **Never build from a reference mesh.** It is the answer key. (A measured dataset you build on, such as an
+  organ's CT average, is evidence: check it against the numbers it publishes, and grade against the literature.)
 - **Leave out logos and wordmarks; publish only references whose licence allows it.**
+- **Soft motion is calibrated on measured quantities** (volumes, excursions, timing), set on surfaces and filled
+  in harmonically, and checked for tears every build. See [references/organic.md](references/organic.md).
 - **Stop and ask after 5 review rounds without progress.**
