@@ -15,6 +15,9 @@ a model; it is what made them work once loaded.
 - Metallic surfaces need environment lighting (image-based lighting). In Babylon.js, a `ReflectionProbe`
   that renders the sky (and the ground) once, set as `scene.environmentTexture`, is enough. Without one,
   metal renders black: use metallic 0 with a clear coat instead.
+- A `ReflectionProbe` must be drawn before it becomes `scene.environmentTexture`: materials that sample it while it renders form a feedback loop. Set the environment in the probe's first `onAfterRenderObservable`. Create it with mipmaps (fourth argument) and trilinear sampling, or rough surfaces reflect it as blocks.
+- Shadow lookups outside a spot light's cone return garbage in blocks: let only the surfaces inside its cone receive its shadows.
+- Load the largest textures by distance: a 2k KTX2 at start, the 4k when the viewer comes within reach (references/flat.md).
 - A cabin needs baked light (see SKILL.md). In Babylon.js the glTF occlusion map becomes `ambientTexture`;
   set `material.ambientTextureImpactOnAnalyticalLights = 1` so it dims the sun and sky light too, not only
   the environment.

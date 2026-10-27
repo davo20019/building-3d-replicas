@@ -57,6 +57,8 @@ door's face, trim inside the sill, all of which the door then swept through. Onl
 
 ## Building lessons
 
+- **Flat-shade boxes.** A smooth-shaded box (shared normals) reads as a rounded log; give boxes and other hard-edged parts flat or angle-based shading.
+
 - **Rounded, organic shapes: loft through sections, don't fillet a box.** Sections with the same edges at several depths, inset along a quarter ellipse toward the front, give a roll-off that meets the faces tangentially; a box with chamfers and small fillets reads as machined and angular.
 - **Faceted parts from two silhouettes.** Intersect a side outline extruded across the part with a front outline extruded along it: both views' outlines come out exactly, every face is flat, and it costs a few hundred triangles. Recesses are boxes subtracted 20 to 45 mm deep.
 - **Attach features to the geometry they belong to.** A light bar placed by its own coordinates sat 95 mm below the crease it runs along; built along the crease line, it stays there whatever the parameters. A part built through a point 22 mm inside its housing vanished; place parts on the face they mount to.

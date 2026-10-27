@@ -23,4 +23,8 @@ references (workflow step 1).
 - **Vet a third-party model's provenance before using it as a library part.** Free "CC-BY" uploads are often re-uploads or game rips (identical triangle counts across uploaders, game tags), and paid stock licences usually forbid shipping an extractable GLB.
 - **Museum open-access sites often block scripted page requests**; their APIs, bulk metadata and image delivery services usually don't.
 - **Tools that did not help:** monocular depth (Depth Anything V2 gave a smooth blob, relative only); image-to-3D (TRELLIS returned a flat disc after its background removal deleted a silver part). Don't use them for exact replicas.
+- **The holder's catalogue entry beats an encyclopedia for sizes,** and a full-object scan's pixel ratio can settle a conflict (the Mona Lisa: Louvre 794 x 534 mm, Wikipedia 77 x 53 cm, scan ratio within 0.7 % of the Louvre's).
+- **Use the original upload, not a "retouched" derivative**, which a contributor cropped and relevelled.
+- **"Free" museum image sites are often non-commercial only:** take their numbers, compare with their images, ship only public-domain or openly licensed ones.
+- **Casework makers and press releases describe the display** (case sizes, glass, lighting, wall colour) with numbers; how an object is shown is part of what people recognise.
 - **Trademarks:** leave out logos and wordmarks. A distinctive product shape can itself be protected: don't publish replicas of trademarked designs without checking.

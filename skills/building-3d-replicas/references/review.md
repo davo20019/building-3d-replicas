@@ -13,5 +13,6 @@ Read for workflow steps 7 and 8.
 
 ## Lessons
 
+- **Diagnose an artifact by switching one thing off at a time** in a headless render (the glass, the coat, the shadows) and comparing crops, before changing anything. Two guessed fixes for a haze and some blocky reflections changed nothing; the toggles found the paint's own specular and a probe without mipmaps.
 - **Review renders lie unless calibrated.** Khronos PBR Neutral tone mapping (AgX desaturates, Standard clips). Set `exposure` in `review.json` so a neutral in the photo matches the render; compare colours by sampling pixels. Keep the key light off-axis so glass doesn't mirror it into the camera. Metal needs `"environment": "sky"`, and still won't match each photo's surroundings.
 - **Blender lens shift moves the view**, so the content moves the other way: shift_x = (W/2 - cx) / max(W, H), shift_y = (cy - H/2) / max(W, H).
