@@ -24,6 +24,15 @@ a model; it is what made them work once loaded.
 - A showroom for bare metal should be evenly lit (a bright, plain hall): steel then shows its own tone
   instead of one hot reflection.
 
+## Coplanar faces
+
+Two faces in the same plane, overlapping and facing the same way, flicker in a headset (z-fighting): its depth
+precision is lower and the head never stops moving, so it can look clean on a desktop. Room boxes whose floor
+sits on the floor mesh, a wall opening cut to the inside of the case set into it, trim pieces that overlap at a
+corner. Build assembled pieces to meet, not overlap, and check: for every pair of meshes, compare their faces'
+planes (axis-aligned bounding boxes are enough for boxes and planes) and report the ones that share a plane,
+overlap, and face the same way. Faces that touch while facing each other hide each other and are fine.
+
 ## Loading
 
 - glTF is right-handed; Babylon.js is left-handed. Its loader adds a `__root__` node that mirrors z, so a
